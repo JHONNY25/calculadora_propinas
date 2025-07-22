@@ -3,7 +3,8 @@ import MenuItem from './components/MenuItem'
 import './App.css'
 import useOrder from './hooks/useOrder'
 import OrderContents from './components/OrderContents'  
-
+import OrderTotal from './components/OrderTotal'  
+import TipPorcentageForm from './components/TipPorcentageForm'
 function App() {
 
   const { addItemToOrder, order, removeItemFromOrder } = useOrder();
@@ -34,8 +35,11 @@ function App() {
               : <p className='text-gray-600'>No hay artículos en la orden.</p>
             }
           </div>
+          <div>
+            <TipPorcentageForm onTipChange={} />
+          </div>
           <div className='mt-5 text-xl font-bold'>
-            Total: ${order.reduce((total, item) => total + (item.price * item.quantity), 0)}
+            <OrderTotal order={order}/>
           </div>
         </div>
       </main>
