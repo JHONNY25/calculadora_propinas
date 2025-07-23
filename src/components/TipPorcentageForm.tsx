@@ -1,20 +1,30 @@
+import { TIP_PERCENTAGES } from "../database/TipPercentageForm";
 
-export default function TipPorcentageForm({ onTipChange }: { onTipChange: (tip: number) => void }) {
-    const handleTipChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+type TipPorcentageFormProps = {
+    setTip: React.Dispatch<React.SetStateAction<number>>  
+}
+
+export default function TipPorcentageForm({setTip}: TipPorcentageFormProps) {
+    /* const handleTipChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const tipValue = parseFloat(event.target.value);
         onTipChange(tipValue);
-    };
+    }; */
 
     return (
-        <form className='flex flex-col gap-4'>
+        <form className=''>
             <label className='text-lg font-bold'>Select Tip Percentage:</label>
-            <div className='flex gap-4'>
-                <input type="radio" name="tip" value="0.1" onChange={handleTipChange} />
-                <label>10%</label>
-                <input type="radio" name="tip" value="0.15" onChange={handleTipChange} />
-                <label>15%</label>
-                <input type="radio" name="tip" value="0.2" onChange={handleTipChange} />
-                <label>20%</label>
+            <div className=''>
+                {TIP_PERCENTAGES.map(tip => (
+                    <div key={tip.id}>
+                        <input 
+                            type="radio" 
+                            name="tip" 
+                            value={tip.value} 
+                            onChange={(e) => setTip(parseFloat(e.target.value))}
+                        />
+                        <label>{tip.label}</label>
+                    </div>
+                ))}
             </div>
         </form>
     );

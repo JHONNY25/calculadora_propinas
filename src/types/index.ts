@@ -7,3 +7,9 @@ export type menuItem = {
 export type OrderItem = menuItem & {
     quantity: number
 }
+
+export type tips = {
+    id: string
+    value: number
+    label: string
+}
